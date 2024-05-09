@@ -1,0 +1,32 @@
+body {
+    background: rgb(59, 59, 59);
+}
+h1 {
+    font-size: 80px;
+    text-align: center;
+    color: #ffffff;
+}
+.text::before {
+    content: '';
+    display: block;
+    background: #ad2222;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    border: 7px solid #ffffff;
+    position: absolute;
+    left: 600px;
+    top: 50px;
+}
+.text::after {
+    content: '';
+    display: block;
+    background: #2729b3;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    border: 7px solid #ffffff;
+    position: absolute;
+    right: 600px;
+    top: 50px;
+}
