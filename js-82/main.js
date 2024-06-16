@@ -1,30 +1,37 @@
-
-// я вообще не понимаю принцип работы функций, это ужас, я пыталась, спасибо за внимание.//
-
-function nameLog (name) {
-    const randomName = name;
-    return randomName;
+function nameLog(name) {
+    return `Hello ${name}`;
 }
-console.log(`Hello ${nameLog("Albert or Daniil or Who you.. idk")}`)
+console.log(nameLog("Альберт"))
 
 
+const num = [1, 23, 5, 465, 77, 0, 3, 80]
 
-const numbers = [1,3,7,13,17,20]
-
-function mNumbers(numbers) {
-    for(i=0; i<numbers.length; i++){
-        if (numbers[i]>10) {
-            return numbers[i]
+function numLog(num) {
+    for (let i = 0; i < num.length; i++) {
+        if (num[i] > 10) {
+            console.log(num[i])
         }
     }
 }
-console.log (mNumbers(numbers))
+console.log(numLog(num))
 
-
-
-function calculate (x,y,operator)
-while (operator == "minus") {
-    return result = x-y
+function calc(firstNumber, secondNumber, operator) {
+    if (operator == 'plus') {
+        let res = firstNumber + secondNumber;
+        console.log(res)
+    }
+    else if (operator == 'minus') {
+        let res = firstNumber - secondNumber;
+        console.log(res)
+    }
+    else if (operator == 'share') {
+        let res = firstNumber / secondNumber;
+        console.log(res)
+    }
+    else if (operator == 'multiply') {
+        let res = firstNumber * secondNumber;
+        console.log(res)
+    }
 }
-console.log(calculate (3,2,"minus"))
 
+console.log(calc(6, 3, 'share'))
