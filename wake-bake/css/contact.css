@@ -1,0 +1,191 @@
+.contact {
+    padding: 140px 0px;
+    background: url(../img/decor/bg-footer.png) 50% 100% / cover no-repeat;
+}
+
+.contact__inner {
+    display: flex;
+    gap: 84px;
+    align-items: end;
+    position: relative;
+}
+
+.contact__inner::before {
+    content: url(../img/decor/blueberry.png);
+    position: absolute;
+    top: -4%;
+    left: 0;
+}
+
+.contact__inner::after {
+    content: url(../img/decor/blueberry-2.png);
+    position: absolute;
+    top: 4%;
+    right: 0;
+}
+
+.contact__img img {
+    width: 100%;
+    filter: drop-shadow(0 4px 30px #c6b0a14d);
+}
+
+.contact__body {
+    max-width: 420px;
+}
+
+.contact__title {
+    font-family: "Gabriola", sans-serif;
+    font-weight: 400;
+    font-size: 74px;
+    line-height: 0.82;
+    color: var(--title-text);
+    margin-bottom: 20px;
+}
+
+.contact__text {
+    margin-bottom: 40px;
+}
+
+.contact__form {
+    position: relative;
+}
+
+.contact__label span {
+    position: absolute;
+    left: 28px;
+    top: 12px;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 1.5;
+    color: #AC907A;
+    visibility: hidden;
+    opacity: 0;
+
+    transition: all .4s;
+}
+
+.field__input {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    background: #00000000;
+    padding: 19px 41px 19px 28px;
+    width: 100%;
+    border-radius: 100px;
+    border: 1px solid #AC907A;
+
+    transition: all .4s;
+}
+
+.field__input:hover {
+    border-color: var(--accent-color);
+}
+
+.field__input::placeholder {
+    transition: all .4s;
+}
+
+.field__input:hover::placeholder {
+    color: var(--accent-color);
+}
+
+.field__input:hover::placeholder {
+    color: var(--accent-color);
+}
+
+.field__input:focus {
+    padding: 26px 41px 12px 28px;
+}
+
+.field__input:focus+span {
+    visibility: visible;
+    opacity: 1;
+}
+
+.contact__input {
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 1.5;
+    background: #00000000;
+    padding: 19px 41px 19px 28px;
+    width: 100%;
+    border-radius: 100px;
+    border: 1px solid #AC907A;
+
+    transition: all .4s;
+}
+
+.contact__input:hover {
+    border-color: var(--accent-color);
+}
+
+.contact__input::placeholder {
+    transition: all .4s;
+}
+
+.contact__input:hover::placeholder {
+    color: var(--accent-color);
+}
+
+.contact__input:hover::placeholder {
+    color: var(--accent-color);
+}
+
+.contact__check-label {
+    display: flex;
+    align-items: start;
+    margin-bottom: 20px;
+    gap: 5px;
+    max-width: 288px;
+    font-size: 13px;
+
+}
+
+.contact__check-label a {
+    text-decoration: underline;
+
+    transition: all .4s;
+}
+
+.contact__check-label a:hover {
+    color: var(--accent-color);
+}
+
+.contact__checkbox {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #AC907A;
+    border-radius: 4px;
+    flex-shrink: 0;
+    cursor: pointer;
+    transform: translateY(10%);
+    position: relative;
+
+    transition: all .4s;
+}
+
+.contact__checkbox::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url(../img/icons/check.svg) 50% 50% no-repeat;
+    opacity: 0;
+    visibility: hidden;
+
+    transition: all .4s;
+}
+
+.contact__checkbox:checked::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+.contact__checkbox:hover {
+    border: 2px solid var(--accent-color);
+}
+
+.contact__checkbox:checked {
+    background: var(--accent-color);
+    border: 2px solid var(--accent-color);
+}
