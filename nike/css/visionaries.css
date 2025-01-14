@@ -1,0 +1,43 @@
+.visionaries__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.visionaries__info {
+    max-width: 621px;
+}
+
+.visionaries__title {
+    font-family: var(--font4);
+    font-weight: 500;
+    font-size: 48px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+}
+
+.visionaries__title-effect {
+    color: #ba0000;
+}
+
+.visionaries__text {
+    margin-bottom: 24px;
+}
+
+.visionaries__text:last-child {
+    margin-bottom: 32px;
+}
+
+.visionaries__text-first {
+    margin-bottom: 32px;
+}
+
+.visionaries__text-accent {
+    font-family: var(--font5);
+    font-weight: 900;
+    text-transform: capitalize;
+}
+
+.visionaries__button {
+    max-width: 241px;
+}
