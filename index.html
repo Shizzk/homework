@@ -1,174 +1,857 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Домашняя работа</title>
-    <link rel="shortcut icon" href="src/logo.ico" type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Rubik:wght@500&display=swap"
-          rel="stylesheet">
-    <link rel="stylesheet" href="src/style.css">
+    <title>AI Workspace</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: #222;
+            background: #fff;
+        }
+
+        section {
+            max-width: 1200px;
+            margin: 140px auto;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-weight: 700;
+            color: #111;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        /* Кнопки */
+        .btn-primary {
+            background: #3b82f6;
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.25);
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #fdfdfb;
+            border: 1px solid #ccc;
+            color: #111;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: border-color 0.2s, transform 0.2s;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            border-color: #3b82f6;
+            color: #3b82f6;
+            transform: translateY(-2px);
+        }
+
+        .accent {
+            color: #3b82f6;
+        }
+
+        /* Первый экран */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+
+        /* Второй экран — боли */
+        .pain-points {
+            background: #fff;
+        }
+
+        .pain-points .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .pain-card {
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .pain-card:hover {
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        }
+
+        .pain-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #111827;
+        }
+
+        .pain-card .subtitle {
+            font-size: 1rem;
+            font-style: italic;
+            color: #374151;
+            margin-bottom: 15px;
+        }
+
+        .pain-card ul {
+            list-style: disc;
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .pain-card ul li {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-bottom: 6px;
+        }
+
+
+        /* Третий экран — как мы работаем */
+        .insightcraft-delivers {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        .insightcraft-delivers .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .insightcraft-delivers h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 50px;
+            font-weight: 700;
+            color: #111;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+            color: #222;
+            cursor: pointer;
+            border: 1px solid #ccc;
+        }
+
+        .card .icon {
+            margin-bottom: 20px;
+            color: #111;
+        }
+
+        .card h3 {
+            margin: 0 0 12px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #222;
+            transition: color 0.3s ease;
+        }
+
+        .card p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.6;
+            transition: color 0.3s ease;
+        }
+
+        /* 🎨 Ховер-эффект */
+        .card:hover {
+            background: #3b82f6;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            color: #fff;
+        }
+
+        .card:hover .icon,
+        .card:hover h3,
+        .card:hover p {
+            color: #fff;
+        }
+
+        .card:hover svg {
+            stroke: #fff;
+        }
+
+        .how-it-works {
+            padding: 60px 0px 0px;
+            background: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        .how-it-works .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .how-it-works h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 50px;
+            font-weight: 700;
+            color: #111;
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .step-card {
+            cursor: pointer;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            background: #f9f9fb;
+            border-radius: 14px;
+            padding: 20px 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            color: #222;
+            border: 1px solid #ccc;
+        }
+
+        .step-card .icon {
+            flex-shrink: 0;
+            color: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .step-card h3 {
+            margin: 0 0 8px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #222;
+            transition: color 0.3s ease;
+        }
+
+        .step-card p {
+            margin: 0;
+            font-size: 16px;
+            color: #555;
+            line-height: 1.6;
+            transition: color 0.3s ease;
+        }
+
+        /* 🎨 Hover эффект в стиле InsightCraft */
+        .step-card:hover {
+            background: #3b82f6;
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .step-card:hover h3,
+        .step-card:hover p,
+        .step-card:hover .icon {
+            color: #fff;
+        }
+
+        .step-card:hover svg {
+            stroke: #fff;
+        }
+
+        .different {
+            padding: 60px 0px 0px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+
+        .different-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .different-card {
+            background: #f9fafb;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .different-card .icon {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 15px;
+            color: #3b82f6;
+        }
+
+        .different-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .different-card p {
+            font-size: 0.95rem;
+            color: #4b5563;
+            line-height: 1.4;
+        }
+
+        .different-card:hover {
+            background: #3b82f6;
+            color: #fff;
+            transform: translateY(-4px);
+        }
+
+        .different-card:hover p,
+        .different-card:hover h3 {
+            color: #fff;
+        }
+
+        .different-card:hover .icon {
+            color: #fff;
+        }
+
+
+        /* Четвёртый экран — форма захвата */
+        .cta {
+            text-align: center;
+            background: #fff;
+            /* белый фон */
+            color: #111;
+            /* тёмный текст */
+            margin-bottom: 50px;
+        }
+
+        .cta-title {
+            text-align: left !important;
+        }
+
+        .cta-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #4b5563;
+        }
+
+        .cta-form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-form input {
+            flex: 1 1 200px;
+            padding: 14px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .cta-form input:focus {
+            border-color: #3b82f6;
+        }
+
+        .btn-primary2 {
+            background: #3b82f6;
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.25);
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary2:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .marquee-wrapper {
+            overflow: hidden;
+            background: #fff;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+
+        .marquee {
+            display: flex;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: flex;
+            animation: marquee 25s linear infinite;
+        }
+
+        .marquee-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 15px;
+            padding: 10px 18px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            font-size: 15px;
+            font-weight: 500;
+            color: #333;
+            flex-shrink: 0;
+        }
+
+        .marquee-item svg {
+            color: #4caf50;
+            min-width: 18px;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .marquee-wrapper {
+            margin-top: 20px;
+        }
+
+
+        @media (max-width: 900px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+        }
+
+        /* адаптив */
+        @media (min-width: 768px) {
+            .deliver-items {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .deliver-item {
+                flex: 1;
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
-<body id="body">
-<div class="overlay" id="overlay"></div>
-<div class="layout">
-    <div class="burger" id="burger">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-            <g id="SVGRepo_iconCarrier">
-                <path d="M4 18L20 18" stroke="#DAF765" stroke-width="2" stroke-linecap="round"></path>
-                <path d="M4 12L20 12" stroke="#DAF765" stroke-width="2" stroke-linecap="round"></path>
-                <path d="M4 6L20 6" stroke="#DAF765" stroke-width="2" stroke-linecap="round"></path>
-            </g>
-        </svg>
-    </div>
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar__inner">
-            <div class="logo">
-                <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_513_74730)">
-                        <path d="M46.17 -0.257004H3.83C1.57281 -0.257004 -0.257 1.57281 -0.257 3.83V46.17C-0.257 48.4272 1.57281 50.257 3.83 50.257H46.17C48.4272 50.257 50.257 48.4272 50.257 46.17V3.83C50.257 1.57281 48.4272 -0.257004 46.17 -0.257004Z"
-                              fill="#DAF765"/>
-                        <path d="M24.375 38.4H42.461L27.441 3.1585H20.4355C20.4355 3.1585 6.7895 35.881 1.1945 49.294C2.015 50.0275 3.0945 50.257 3.6945 50.257H8.8445L23.954 13.07L32.0465 32.8285H24.375V38.4Z"
-                              fill="#323843"/>
-                    </g>
-                    <defs>
-                        <clipPath id="clip0_513_74730">
-                            <rect width="50" height="50" fill="white"/>
-                        </clipPath>
-                    </defs>
-                </svg>
+
+<body>
+
+    <!-- Первый экран -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Turn $50K Research Into <span class="accent">5-Minute</span> Decisions</h1>
+            <p>Premium market intelligence, distilled into actionable insights for emerging market opportunities <br>
+                Access the same data that Fortune 500 companies pay millions for – delivered as concise, decision-ready
+                reports for startups, accelerators, and emerging market players. </p>
+            <div class="hero-buttons">
+                <a href="#form" class="btn-primary">Try for Free</a>
+                <a href="#demo" class="btn-secondary">Learn How It Works</a>
             </div>
-            <div class="sidebar__user">
-                <div class="sidebar__name">Валерия Щеглова</div>
-                <div class="sidebar__text">Счастливый студент</div>
+        </div>
+        <div class="hero-image">
+            <img src="../img/bg.png" alt="Изображение">
+        </div>
+    </section>
+
+    <!-- Второй экран (боли) -->
+    <section class="pain-points">
+        <h1>The Research <span class="accent">Reality Check</span></h1>
+        <div class="container">
+            <div class="pain-card">
+                <h3>The Cost Barrier</h3>
+                <p class="subtitle">"Premium Research Costs More Than Your Marketing Budget"</p>
+                <ul>
+                    <li>Single industry reports: $10K each</li>
+                    <li>Annual subscriptions: $100K+ for comprehensive coverage</li>
+                    <li>Most insights buried in 100+ page documents</li>
+                </ul>
             </div>
-            <div class="sidebar__tabs">
-                <div class="sidebar__item">
-                    <button class="sidebar__button active" id="tasks">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <g clip-path="url(#clip0_704_74543)">
-                                <path d="M17.7083 20H2.29167C1.0275 20 0 18.9725 0 17.7083V2.29167C0 1.0275 1.0275 0 2.29167 0H17.7083C18.9725 0 20 1.0275 20 2.29167V17.7083C20 18.9725 18.9725 20 17.7083 20ZM2.29167 1.25C1.7175 1.25 1.25 1.7175 1.25 2.29167V17.7083C1.25 18.2825 1.7175 18.75 2.29167 18.75H17.7083C18.2825 18.75 18.75 18.2825 18.75 17.7083V2.29167C18.75 1.7175 18.2825 1.25 17.7083 1.25H2.29167Z"
-                                      fill="black"/>
-                                <path d="M6.04167 13.125C5.88167 13.125 5.72167 13.0642 5.6 12.9417L3.1 10.4417C2.85583 10.1975 2.85583 9.80167 3.1 9.5575L5.6 7.0575C5.84417 6.81333 6.24 6.81333 6.48417 7.0575C6.72833 7.30167 6.72833 7.6975 6.48417 7.94167L4.42583 10L6.48417 12.0583C6.72833 12.3025 6.72833 12.6983 6.48417 12.9425C6.36167 13.0642 6.20167 13.125 6.04167 13.125Z"
-                                      fill="black"/>
-                                <path d="M8.95833 14.1667C8.9 14.1667 8.84 14.1583 8.78167 14.1417C8.45083 14.0442 8.26083 13.6967 8.35833 13.3658L10.4417 6.28251C10.5392 5.95084 10.8892 5.76417 11.2175 5.85917C11.5483 5.95667 11.7383 6.30417 11.6408 6.63501L9.5575 13.7183C9.47833 13.9908 9.22833 14.1667 8.95833 14.1667Z"
-                                      fill="black"/>
-                                <path d="M13.9583 13.125C13.7983 13.125 13.6383 13.0642 13.5167 12.9417C13.2725 12.6975 13.2725 12.3017 13.5167 12.0575L15.575 9.99916L13.5167 7.94083C13.2725 7.69666 13.2725 7.30083 13.5167 7.05666C13.7608 6.81249 14.1567 6.81249 14.4008 7.05666L16.9008 9.55666C17.145 9.80083 17.145 10.1967 16.9008 10.4408L14.4008 12.9408C14.2783 13.0642 14.1183 13.125 13.9583 13.125Z"
-                                      fill="black"/>
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_704_74543">
-                                    <rect width="20" height="20" fill="white"/>
-                                </clipPath>
-                            </defs>
-                        </svg>
-                        <span>Домашние задания</span></button>
-                </div>
-                <div class="sidebar__item">
-                    <button class="sidebar__button" id="diplom">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <g clip-path="url(#clip0_704_74553)">
-                                <path d="M23.2628 10.5971C23.7176 10.365 24 9.90375 24 9.39337C24 8.883 23.7176 8.42175 23.2628 8.18962L12.6135 2.75362C12.2291 2.55824 11.7705 2.55787 11.3854 2.75399L0.736875 8.19C0.282375 8.42175 0 8.883 0 9.39337C0 9.90375 0.282375 10.365 0.736875 10.5971L4.89038 12.7177V18.2074C4.89038 19.8154 8.412 21.393 12 21.393C15.5884 21.393 19.1096 19.815 19.1096 18.2074V12.7174L21.4609 11.517V15.8017L20.901 17.2305C20.7409 17.6389 20.7934 18.0994 21.0405 18.4616C21.2876 18.8246 21.6979 19.041 22.1366 19.041C22.5754 19.041 22.9852 18.8246 23.2324 18.462C23.4795 18.099 23.532 17.6385 23.3719 17.2301L22.8124 15.8021V10.827L23.2628 10.5971ZM17.7623 18.1721C17.6198 18.6375 15.3491 20.0419 12 20.0419C8.65088 20.0419 6.38025 18.6375 6.2415 18.2074V12.3037L6.23887 12.3019C6.23812 12.057 6.1065 11.8207 5.87325 11.7019L1.3515 9.39337L12 3.95737L22.6489 9.39337L12 14.8294L5.87325 11.7019C5.54063 11.5331 4.6695 11.6674 4.5 12C4.33012 12.3322 4.55813 12.5479 4.89038 12.7177L11.3857 16.0331C11.5781 16.1314 11.7889 16.1805 12 16.1805C12.2107 16.1805 12.4222 16.1314 12.6146 16.0331L17.7593 13.407L17.7623 18.1721Z"
-                                      fill="black"/>
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_704_74553">
-                                    <rect width="24" height="24" fill="white"/>
-                                </clipPath>
-                            </defs>
-                        </svg>
-                        <span>Дипломный проект</span></button>
+            <div class="pain-card">
+                <h3>The Time Trap</h3>
+                <p class="subtitle">"No Time to Digest Mountains of Data"</p>
+                <ul>
+                    <li>6–12 hours needed to analyze one report</li>
+                    <li>Critical insights hidden in complex methodologies</li>
+                    <li>Decision windows closing while you're still reading</li>
+                </ul>
+            </div>
+
+            <div class="pain-card">
+                <h3>The Relevance Gap</h3>
+                <p class="subtitle">"Broad Data Doesn't Fit Your Market"</p>
+                <ul>
+                    <li>80% of content irrelevant for emerging markets</li>
+                    <li>Missing local context and cultural nuances</li>
+                    <li>Generic recommendations that don't work regionally</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Третий экран (как мы работаем) -->
+    <section class="steps-how-works">
+        <h1>Intelligence That <span class="accent">Actually Works</span></h1>
+        <div class="insightcraft-delivers">
+            <div class="container">
+                <h2>What InsightCraft Delivers</h2>
+                <div class="card-grid">
+
+                    <!-- Card 1 -->
+                    <div class="card">
+                        <div class="icon">
+                            <!-- Лупа -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none"
+                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="20" cy="20" r="12" />
+                                <line x1="32" y1="32" x2="46" y2="46" />
+                            </svg>
+                        </div>
+                        <h3>Market Intelligence Briefs</h3>
+                        <p>Distilled insights from premium research sources, focused on emerging market opportunities
+                            and startup-relevant trends.</p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="card">
+                        <div class="icon">
+                            <!-- График -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none"
+                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="44" x2="12" y2="24" />
+                                <line x1="24" y1="44" x2="24" y2="12" />
+                                <line x1="36" y1="44" x2="36" y2="28" />
+                                <line x1="4" y1="44" x2="44" y2="44" />
+                            </svg>
+                        </div>
+                        <h3>Data-Driven Recommendations</h3>
+                        <p>Clear, actionable takeaways that help you make decisions faster than your competition.</p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="card">
+                        <div class="icon">
+                            <!-- Молния -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none"
+                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="22 4 6 28 22 28 18 44 42 20 26 20 30 4" />
+                            </svg>
+                        </div>
+                        <h3>Weekly Delivery</h3>
+                        <p>Fresh insights delivered every week, keeping you ahead of market shifts and opportunities.
+                        </p>
+                    </div>
+
                 </div>
             </div>
         </div>
+        <div class="how-it-works">
+            <div class="container">
+                <h2>How It Works</h2>
+                <div class="steps">
 
-    </aside>
-    <div class="content">
-        <div class="container">
-            <div class="content__block" id="tasksBlock">
-                <div class="content__title">Домашние задания</div>
-                <ul class="content__list">
-                    <li class="content__list-item">
-                        <a href="Lesson 1/index.html">Урок 8</a>
-                    </li>
-                    <li class="content__list-item">
-                        <a href="html-20/index.html">Урок 20</a>
-                    </li>
-                     <li class="content__list-item">
-                        <a href="css-36/index.html">Урок 36</a>
-                    </li>
-                     <li class="content__list-item">
-                        <a href="css-43/index.html">Урок 43</a>
-                    </li>
-                     <li class="content__list-item">
-                        <a href="css-48/index.html">Урок 48</a>
-                    </li>
-                     <li class="content__list-item">
-                        <a href="css-51/index.html">Урок 51</a>
-                    </li>
-                     <li class="content__list-item">
-                        <a href="css-54/index.html">Урок 54</a>
-                    </li>
-                     <li class="content__list-item">
-                        <a href="css-55/index.html">Урок 55</a>
-                    </li>
-                     <li class="content__list-item">
-                        <a href="css-57/index.html">Урок 57</a>
-                    </li>
-                     <li class="content__list-item">
-                        <a href="css-58/index.html">Урок 58</a>
-                    </li>
-                     <li class="content__list-item">
-                        <a href="css-59/index.html">Урок 59</a>
-                    </li>
-                     <li class="content__list-item">
-                        <a href="css-69-layout/index.html">Урок 69</a>
-                    </li>
-                     <li class="content__list-item">
-                        <a href="js-1/index.html">Урок 76</a>
-                    </li>
-                     <li class="content__list-item">
-                        <a href="js-79/index.html">Урок 79</a>
-                    </li>
-                     <li class="content__list-item">
-                        <a href="js-80/index.html">Урок 80</a>
-                    </li>
-                     <li class="content__list-item">
-                        <a href="js-81/index.html">Урок 81</a>
-                    </li>
-                     <li class="content__list-item">
-                        <a href="js-82/index.html">Урок 82</a>
-                    </li>
-                     <li class="content__list-item">
-                        <a href="js-83/index.html">Урок 83</a>
-                    </li>
-                     <li class="content__list-item">
-                        <a href="js-92/index.html">Урок 92</a>
-                    </li>
-                     <li class="content__list-item">
-                        <a href="wake-bake/index.html">Wake&Bake</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="content__block hidden" id="diplomBlock">
-                <div class="content__title">Дипломный проект</div>
-                <div class="content__list-diplom">
-                    <a href="nike">Ссылка на ДЗ</a>
+                    <!-- Step 1 -->
+                    <div class="step-card">
+                        <div class="icon">
+                            <!-- База данных (доступ) -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none"
+                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <ellipse cx="24" cy="8" rx="16" ry="6" />
+                                <path d="M8 8v12c0 3.3 7.2 6 16 6s16-2.7 16-6V8" />
+                                <path d="M8 20v12c0 3.3 7.2 6 16 6s16-2.7 16-6V20" />
+                            </svg>
+                        </div>
+                        <div class="content">
+                            <h3>Step 1: Access</h3>
+                            <p>We access premium research databases worth millions.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="step-card">
+                        <div class="icon">
+                            <!-- Документ (дистилляция инсайтов) -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none"
+                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="8" y="4" width="32" height="40" rx="4" ry="4" />
+                                <line x1="16" y1="16" x2="32" y2="16" />
+                                <line x1="16" y1="24" x2="32" y2="24" />
+                                <line x1="16" y1="32" x2="28" y2="32" />
+                            </svg>
+                        </div>
+                        <div class="content">
+                            <h3>Step 2: Distill</h3>
+                            <p>We distill key findings into 2-page actionable briefs.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-card">
+                        <div class="icon">
+                            <!-- Решение (галочка) -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none"
+                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="12 28 22 38 38 14" />
+                            </svg>
+                        </div>
+                        <div class="content">
+                            <h3>Step 3: Decide</h3>
+                            <p>You decide faster with confidence and clarity.</p>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="content__decor">
-                    <div class="content__decor-text">Давай проверим, чему ты научился!</div>
-                    <div class="content__decor-img">
-                        <img src="src/decor.png" alt="decor">
+            </div>
+        </div>
+        <div class="different">
+            <div class="container">
+                <h2 class="section-title">What Makes Us Different</h2>
+                <div class="different-grid">
+
+                    <div class="different-card">
+                        <div class="icon">
+                            <!-- Часы -->
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <circle cx="12" cy="12" r="10" stroke-width="2" />
+                                <path stroke-width="2" d="M12 6v6l4 2" />
+                            </svg>
+                        </div>
+                        <h3>Speed</h3>
+                        <p>5 minutes to read vs. 5 hours to research</p>
+                    </div>
+
+                    <div class="different-card">
+                        <div class="icon">
+                            <!-- Копилка -->
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-width="2" d="M4 12a8 8 0 1116 0 8 8 0 01-16 0z" />
+                                <path stroke-width="2" d="M9 12h6" />
+                            </svg>
+                        </div>
+                        <h3>Cost</h3>
+                        <p>90% less than buying reports directly</p>
+                    </div>
+
+                    <div class="different-card">
+                        <div class="icon">
+                            <!-- Глобус -->
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <circle cx="12" cy="12" r="10" stroke-width="2" />
+                                <path stroke-width="2" d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" />
+                            </svg>
+                        </div>
+                        <h3>Focus</h3>
+                        <p>Emerging market opportunities, not just Western trends</p>
+                    </div>
+
+                    <div class="different-card">
+                        <div class="icon">
+                            <!-- Галочка -->
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                        <h3>Actionable</h3>
+                        <p>Specific recommendations, not academic theory</p>
+                    </div>
+
+                </div>
+            </div>
+            </в>
+
+
+
+
+    </section>
+
+    <!-- Четвертый экран (форма захвата) -->
+    <section class="cta">
+        <div class="container">
+            <h1 class="cta-title">Start Making Smarter <span class="accent">Decisions Today</span></h1>
+            <p class="cta-subtitle">Get Your First Intelligence Brief Free</p>
+
+            <form class="cta-form">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <button type="submit" class="btn-primary2">Get Started</button>
+            </form>
+            <div class="marquee-wrapper">
+                <div class="marquee">
+                    <div class="marquee-content">
+                        <div class="marquee-item">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                <path
+                                    d="M20.285 6.709a1 1 0 0 0-1.414-1.418l-9.192 9.201-4.243-4.243a1 1 0 0 0-1.415 1.415l5 5a1 1 0 0 0 1.414 0l10-9.955z" />
+                            </svg>
+                            Instant Access to our brief archive (50+ reports)
+                        </div>
+                        <div class="marquee-item">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                <path
+                                    d="M20.285 6.709a1 1 0 0 0-1.414-1.418l-9.192 9.201-4.243-4.243a1 1 0 0 0-1.415 1.415l5 5a1 1 0 0 0 1.414 0l10-9.955z" />
+                            </svg>
+                            Weekly Delivery of fresh market intelligence
+                        </div>
+                        <div class="marquee-item">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                <path
+                                    d="M20.285 6.709a1 1 0 0 0-1.414-1.418l-9.192 9.201-4.243-4.243a1 1 0 0 0-1.415 1.415l5 5a1 1 0 0 0 1.414 0l10-9.955z" />
+                            </svg>
+                            Money-Back Guarantee if not satisfied in 30 days
+                        </div>
+                        <div class="marquee-item">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                <path
+                                    d="M20.285 6.709a1 1 0 0 0-1.414-1.418l-9.192 9.201-4.243-4.243a1 1 0 0 0-1.415 1.415l5 5a1 1 0 0 0 1.414 0l10-9.955z" />
+                            </svg>
+                            Startup-Friendly Pricing starting at $99/month
+                        </div>
+                        <!-- Дублируем, чтобы был бесконечный цикл -->
+                        <div class="marquee-item">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                <path
+                                    d="M20.285 6.709a1 1 0 0 0-1.414-1.418l-9.192 9.201-4.243-4.243a1 1 0 0 0-1.415 1.415l5 5a1 1 0 0 0 1.414 0l10-9.955z" />
+                            </svg>
+                            Instant Access to our brief archive (50+ reports)
+                        </div>
+                        <div class="marquee-item">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                <path
+                                    d="M20.285 6.709a1 1 0 0 0-1.414-1.418l-9.192 9.201-4.243-4.243a1 1 0 0 0-1.415 1.415l5 5a1 1 0 0 0 1.414 0l10-9.955z" />
+                            </svg>
+                            Weekly Delivery of fresh market intelligence
+                        </div>
+                        <div class="marquee-item">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                <path
+                                    d="M20.285 6.709a1 1 0 0 0-1.414-1.418l-9.192 9.201-4.243-4.243a1 1 0 0 0-1.415 1.415l5 5a1 1 0 0 0 1.414 0l10-9.955z" />
+                            </svg>
+                            Money-Back Guarantee if not satisfied in 30 days
+                        </div>
+                        <div class="marquee-item">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                <path
+                                    d="M20.285 6.709a1 1 0 0 0-1.414-1.418l-9.192 9.201-4.243-4.243a1 1 0 0 0-1.415 1.415l5 5a1 1 0 0 0 1.414 0l10-9.955z" />
+                            </svg>
+                            Startup-Friendly Pricing starting at $99/month
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
-    </div>
-</div>
-<script src="src/index.js"></script>
+    </section>
+
+
+
+
 </body>
+
 </html>
