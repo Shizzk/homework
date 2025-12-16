@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Приглашение в кино</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: #2b2b2b;
+        }
+
+        /* Снежинки */
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            animation: fall linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh);
+            }
+        }
+
+        .card {
+            width: 92%;
+            max-width: 380px;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 24px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            position: relative;
+            animation: appear 0.8s ease;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .poster {
+    width: 100%;
+    height: 260px;
+    border-radius: 18px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #89f7fe, #66a6ff);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.6);
+}
+
+.poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;       /* 🔥 главное */
+    object-position: center;
+    display: block;
+}
+.poster::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.05),
+        rgba(0,0,0,0.1)
+    );
+}
+
+
+
+        .title {
+            margin: 18px 0 10px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            text-align: center;
+            opacity: 0.8;
+            margin-bottom: 14px;
+        }
+
+        .text {
+            font-size: 0.95rem;
+            line-height: 1.45;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .details {
+            background: #f7f7f7;
+            border-radius: 16px;
+            padding: 14px;
+            font-size: 0.9rem;
+        }
+
+        .detail {
+            margin-bottom: 8px;
+        }
+
+        .detail:last-child {
+            margin-bottom: 0;
+        }
+
+        .label {
+            font-weight: 600;
+        }
+
+        .footer {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .heart {
+            color: #ff5c8a;
+            animation: pulse 1.6s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Снежинки -->
+    <span class="snowflake" style="left: 10%; animation-duration: 8s;">❄</span>
+    <span class="snowflake" style="left: 25%; animation-duration: 10s;">❄</span>
+    <span class="snowflake" style="left: 40%; animation-duration: 7s;">❄</span>
+    <span class="snowflake" style="left: 55%; animation-duration: 11s;">❄</span>
+    <span class="snowflake" style="left: 70%; animation-duration: 9s;">❄</span>
+    <span class="snowflake" style="left: 85%; animation-duration: 12s;">❄</span>
+
+    <div class="card">
+        <div class="poster">
+            <img src="./1.jpeg" alt="">
+        </div>
+
+        <div class="title">Бельчонок, Вас пригласили в кино ✨</div>
+
+        <div class="text">
+            Вас ждёт уютный вечер, тёплая компания и один милый человек,
+            который будет рад провести это время именно с вами <span class="heart">♥</span>
+        </div>
+
+        <div class="details">
+            <div class="detail"><span class="label">📍 Место:</span> Кинотеатр Алмаз Синема</div>
+            <div class="detail"><span class="label">🕰 Время:</span> 19:40</div>
+            <div class="detail"><span class="label">🎞 Фильм:</span> Зверополис 2 (очень хороший)</div>
+            <div class="detail"><span class="label">👗 Дресс-код:</span> уют, тепло и возможность быть собой</div>
+        </div>
+
+        <div class="footer">
+            Ответ принимается в любой форме: <br>
+            «да», «да!!!», «ладно» или смущённой улыбкой ;)
+        </div>
+    </div>
+
+</body>
+
+</html>
