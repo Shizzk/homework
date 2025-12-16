@@ -12,16 +12,34 @@
         }
 
         body {
-            margin: 0;
-            font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #ffdde1, #ee9ca7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            color: #2b2b2b;
-        }
+    margin: 0;
+    font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    display: block; /* убираем flex */
+    color: #2b2b2b;
+    overflow-x: hidden;
+    padding: 20px 0; /* отступ сверху/снизу */
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    width: 92%;
+    max-width: 380px;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 24px;
+    padding: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    position: relative;
+    animation: appear 0.8s ease;
+    margin-bottom: 20px; /* немного снизу для скролла */
+    overflow: hidden;
+}
+
 
         /* Снежинки */
         .snowflake {
@@ -37,17 +55,6 @@
             to {
                 transform: translateY(110vh);
             }
-        }
-
-        .card {
-            width: 92%;
-            max-width: 380px;
-            background: rgba(255, 255, 255, 0.92);
-            border-radius: 24px;
-            padding: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-            position: relative;
-            animation: appear 0.8s ease;
         }
 
         @keyframes appear {
@@ -169,7 +176,7 @@
     <span class="snowflake" style="left: 55%; animation-duration: 11s;">❄</span>
     <span class="snowflake" style="left: 70%; animation-duration: 9s;">❄</span>
     <span class="snowflake" style="left: 85%; animation-duration: 12s;">❄</span>
-
+    <div class="container">
     <div class="card">
         <div class="poster">
             <img src="./1.jpeg" alt="">
@@ -194,7 +201,7 @@
             «да», «да!!!», «ладно» или смущённой улыбкой ;)
         </div>
     </div>
-
+</div>
 </body>
 
 </html>
